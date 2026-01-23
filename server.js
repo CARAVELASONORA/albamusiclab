@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Serve static files from the 'wwwroot' directory
-app.use(express.static(path.join(__dirname, 'wwwroot')));
+app.use(express.static(__dirname));
 app.use(express.json());
 
 // --- EMAIL CONFIGURATION ---
@@ -49,7 +49,7 @@ app.post('/api/contact', async (req, res) => {
 
 // Fallback to index.html for any other requests (SPA behavior, optional but good)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'wwwroot', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {

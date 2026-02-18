@@ -983,6 +983,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   height: 100vh;
 }
 
+.h-10 {
+  height: 2.5rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -993,6 +997,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 .w-full {
   width: 100%;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .max-w-3xl {
@@ -1114,6 +1122,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 .rounded-sm {
   border-radius: 0.125rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border {

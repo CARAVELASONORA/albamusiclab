@@ -5,8 +5,9 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Serve static files from the 'wwwroot' directory
-app.use(express.static(__dirname));
+
+// Serve static files from the 'wwwroot' directory, but don't serve index.html automatically for directories
+app.use(express.static(__dirname, { index: false }));
 app.use(express.json());
 
 // --- EMAIL CONFIGURATION ---
@@ -47,11 +48,17 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-// Fallback to index.html for any other requests (SPA behavior, optional but good)
-app.get('*', (req, res) => {
+// Explicitly serve index.html for root
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(port, () => {
+// Fallback to 404.html for any other requests
+app.use((req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, '404.html'));
+});
+
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running at http://localhost:${port}`);
+  console.log(`On your network, access it at: http://<your-ip-address>:${port}`);
 });

@@ -5,246 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alba Music Lab</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="./dist/output.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Manrope:wght@300;400;500&amp;display=swap"
       rel="stylesheet"
     />
-    <style>
-      body {
-        box-sizing: border-box;
-      }
-
-      .font-display {
-        font-family: "Cormorant Garamond", Georgia, serif;
-      }
-
-      .font-body {
-        font-family: "Manrope", system-ui, sans-serif;
-      }
-
-      .text-warm {
-        color: #e8dcc4;
-      }
-
-      .text-warm-muted {
-        color: #a69b8a;
-      }
-
-      .bg-warm-accent {
-        background-color: #c4a574;
-      }
-
-      .border-warm {
-        border-color: #3d3a35;
-      }
-
-      .hover-warm:hover {
-        color: #c4a574;
-      }
-
-      .service-card {
-        position: relative;
-        overflow: hidden;
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .service-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          transparent 40%,
-          rgba(0, 0, 0, 0.8) 100%
-        );
-        z-index: 1;
-      }
-
-      .service-card:hover {
-        transform: scale(1.02);
-      }
-
-      .service-card:hover .service-number {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .service-number {
-        opacity: 0.5;
-        transform: translateY(10px);
-        transition: all 0.4s ease;
-      }
-
-      .service-description {
-        opacity: 0;
-        transform: translateY(20px);
-        max-height: 0;
-        transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-        overflow: hidden;
-      }
-
-      .service-card:hover .service-description {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 100px;
-      }
-
-      .gallery-item {
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-      }
-
-
-
-      .gallery-item:hover {
-        transform: scale(1.05);
-        z-index: 10;
-      }
-
-      .gallery-caption {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 1.5rem;
-        transform: translateY(100%);
-        transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-        z-index: 20;
-      }
-
-      .gallery-item:hover .gallery-caption {
-        transform: translateY(0);
-      }
-
-      .fade-in {
-        animation: fadeIn 1s ease forwards;
-      }
-
-      .fade-in-delay-1 {
-        animation: fadeIn 1s ease 0.2s forwards;
-        opacity: 0;
-      }
-
-      .fade-in-delay-2 {
-        animation: fadeIn 1s ease 0.4s forwards;
-        opacity: 0;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .grain {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        opacity: 0.03;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        z-index: 1000;
-      }
-
-      .scroll-container {
-        scroll-behavior: smooth;
-      }
-
-      .studio-image {
-        background: linear-gradient(
-          135deg,
-          #1a1917 0%,
-          #2d2a26 50%,
-          #1a1917 100%
-        );
-        position: relative;
-      }
-
-      .studio-image::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          circle at 30% 40%,
-          rgba(196, 165, 116, 0.1) 0%,
-          transparent 50%
-        );
-      }
-
-      .gallery-grid-item {
-        background: linear-gradient(
-          135deg,
-          #1a1917 0%,
-          #2d2a26 50%,
-          #1a1917 100%
-        );
-        position: relative;
-      }
-
-      .gallery-grid-item::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          circle at 50% 50%,
-          rgba(196, 165, 116, 0.08) 0%,
-          transparent 60%
-        );
-      }
-      
-      .gallery-item::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          transparent 20%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        opacity: 1;
-        z-index: 1;
-      }
-
-      .sepia-filter {
-        filter: sepia(0.4);
-        transition: filter 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-      }
-      
-      .group:hover .sepia-filter {
-        filter: sepia(0);
-      }
-    </style>
-    <style>
-      @view-transition {
-        navigation: auto;
-      }
-    </style>
   </head>
   <body class="h-full bg-black text-warm font-body">
     <div class="grain"></div>
     <div class="h-full overflow-auto scroll-container">
       <!-- Navigation -->
       <nav
-        class="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 backdrop-blur-sm bg-black bg-opacity-60"
+        class="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12"
       >
-        <div class="flex justify-between items-center">
-          <a href="#" class="font-display text-xl tracking-wider text-warm"
-            >ALBA MUSIC LAB</a
-          >
+        <!-- Extended Gradient Background -->
+        <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black via-black/60 to-transparent -z-10 pointer-events-none"></div>
+
+        <div class="flex justify-between items-center relative">
+          <!-- Centered Logo -->
+          <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <img src="images/logo.svg" alt="Alba Music Lab Logo" class="h-20 w-auto">
+          </a>
+          
+          <!-- Left spacer (or eventually left links if needed) -->
+          <div class="hidden md:block"></div>
+
+          <!-- Right side: Menu links (Desktop) -->
           <div
-            class="hidden md:flex gap-8 text-sm tracking-wide text-warm-muted"
+            class="hidden md:flex gap-8 text-sm tracking-wide text-warm-muted ml-auto"
           >
             <a href="#bio" class="hover-warm transition-colors duration-300"
               >About</a
@@ -261,7 +51,9 @@
               >Contact</a
             >
           </div>
-          <button class="md:hidden text-warm-muted">
+          
+          <!-- Mobile Menu Button (Right aligned by default in flex) -->
+          <button id="open-menu" class="md:hidden text-warm-muted ml-auto">
             <svg
               width="24"
               height="24"
@@ -276,41 +68,15 @@
       </nav>
       <!-- Hero Section -->
       <section
-        class="min-h-screen flex flex-col justify-center items-center px-6 relative"
+        class="relative h-screen flex flex-col justify-center items-center text-center px-6"
       >
-        <div
-          class="absolute inset-0 flex items-center justify-center opacity-5"
-        >
-          <svg viewbox="0 0 200 200" class="w-96 h-96">
-            <circle
-              cx="100"
-              cy="100"
-              r="80"
-              fill="none"
-              stroke="#C4A574"
-              stroke-width="0.5"
-            />
-            <circle
-              cx="100"
-              cy="100"
-              r="60"
-              fill="none"
-              stroke="#C4A574"
-              stroke-width="0.3"
-            />
-            <circle
-              cx="100"
-              cy="100"
-              r="40"
-              fill="none"
-              stroke="#C4A574"
-              stroke-width="0.2"
-            />
-          </svg>
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none fade-in">
         </div>
-        <div class="text-center z-10 max-w-4xl">
+
+        <div class="relative z-10 max-w-4xl mx-auto">
           <p
-            class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-8 fade-in"
+            class="text-warm-muted text-sm md:text-base tracking-[0.3em] uppercase mb-6 fade-in"
             id="hero-subtitle"
           >
             Composing • Producing • Scoring
@@ -337,22 +103,23 @@
           ></a>
         </div>
       </section>
+      
       <!-- Bio Section -->
       <section
         id="bio"
-        class="min-h-screen px-6 md:px-12 lg:px-24 py-24 flex items-center"
+        class="min-h-screen px-6 md:px-12 lg:px-24 py-24 flex items-center fade-in-section"
       >
         <div
           class="grid md:grid-cols-2 gap-12 lg:gap-24 items-center max-w-7xl mx-auto w-full"
         >
-          <div class="studio-image aspect-[4/5] rounded-sm order-2 md:order-1 group">
+          <div class="studio-image aspect-[4/5] rounded-sm group hidden md:block">
             <img 
               src="images/about.jpg" 
               alt="The Person Behind the Music" 
               class="w-full h-full object-cover rounded-sm sepia-[0.4] group-hover:sepia-0 transition-all duration-700"
             />
           </div>
-          <div class="order-1 md:order-2">
+          <div>
             <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">
               About
             </p>
@@ -363,6 +130,15 @@
               The Person Behind<br />
               the Music
             </h2>
+            
+            <!-- Mobile Image (visible on mobile only) -->
+            <div class="studio-image aspect-[4/5] rounded-sm group md:hidden mb-8">
+              <img 
+                src="images/about.jpg" 
+                alt="The Person Behind the Music" 
+                class="w-full h-full object-cover rounded-sm sepia-[0.4] group-hover:sepia-0 transition-all duration-700"
+              />
+            </div>
             <div
               class="space-y-6 text-warm-muted leading-relaxed"
               id="bio-text"
@@ -398,8 +174,9 @@
           </div>
         </div>
       </section>
+
       <!-- Services Section -->
-      <section id="services" class="px-6 md:px-12 lg:px-24 py-24">
+      <section id="services" class="px-6 md:px-12 lg:px-24 py-24 fade-in-section">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-16">
             <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">
@@ -533,8 +310,9 @@
           </div>
         </div>
       </section>
+
       <!-- Gallery Section -->
-      <section id="gallery" class="px-6 md:px-12 lg:px-24 py-24">
+      <section id="gallery" class="px-6 md:px-12 lg:px-24 py-24 fade-in-section">
         <div class="max-w-7xl mx-auto">
           <div class="text-center mb-16">
             <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">
@@ -553,28 +331,22 @@
             <div class="gallery-item h-80 rounded-sm overflow-hidden relative group">
               <video 
                 src="portefolio/video1.MOV" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[1500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
                 muted 
                 loop 
                 playsinline
               ></video>
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Composition</p>
-                <p class="text-warm-muted text-xs mt-1">Movement 1</p>
-              </div>
+
             </div>
 
             <!-- Image 1 - Portrait (1 col) -->
             <div class="gallery-item md:col-span-2 h-80 rounded-sm overflow-hidden relative group">
               <img 
                 src="portefolio/IMG_9937.jpg" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[1500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
                 alt="Portrait"
               />
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Portrait</p>
-                <p class="text-warm-muted text-xs mt-1">Session</p>
-              </div>
+
             </div>
 
             <!-- Row 2 -->
@@ -583,28 +355,22 @@
             <div class="gallery-item md:col-span-2 h-80 rounded-sm overflow-hidden relative group">
               <img 
                 src="portefolio/EAF8AE45-63A4-42F0-9176-B8329CFD4A40.JPG" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[1500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
                 alt="Production"
               />
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Production</p>
-                <p class="text-warm-muted text-xs mt-1">Behind the scenes</p>
-              </div>
+
             </div>
 
              <!-- Video 2 - Vertical (1 col) -->
              <div class="gallery-item h-80 rounded-sm overflow-hidden relative group">
               <video 
                 src="portefolio/video2.MOV" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[1500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
                 muted 
                 loop 
                 playsinline
               ></video>
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Studio</p>
-                <p class="text-warm-muted text-xs mt-1">Session</p>
-              </div>
+
             </div>
 
             <!-- Row 3 -->
@@ -612,39 +378,30 @@
             <div class="gallery-item h-96 rounded-sm overflow-hidden relative group">
               <img 
                 src="portefolio/IMG_1051.JPG" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[1500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
                 alt="Performance"
               />
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Performance</p>
-                <p class="text-warm-muted text-xs mt-1">On Stage</p>
-              </div>
+
             </div>
 
             <!-- JPG (converted HEIC) 1 (Portrait) (1 col) -->
             <div class="gallery-item h-96 rounded-sm overflow-hidden relative group">
               <img 
                 src="portefolio/E59DC0DE-27DE-4758-9FF1-F7225F8FC341.JPG" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[1500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
                 alt="Concert"
               />
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Concert</p>
-                <p class="text-warm-muted text-xs mt-1">Live Moment</p>
-              </div>
+
             </div>
 
             <!-- JPG (converted HEIC) 2 (Portrait) (1 col) -->
             <div class="gallery-item h-96 rounded-sm overflow-hidden relative group">
               <img 
                 src="portefolio/IMG_9998_2.jpg" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[1500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
                 alt="Studio"
               />
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Details</p>
-                <p class="text-warm-muted text-xs mt-1">Atmosphere</p>
-              </div>
+
             </div>
 
             <!-- Row 4 -->
@@ -654,18 +411,15 @@
             <div class="gallery-item md:col-span-2 lg:col-span-3 h-[500px] rounded-sm overflow-hidden relative group">
               <img 
                 src="portefolio/imagem1.jpg" 
-                class="w-full h-full object-cover sepia-filter opacity-40 group-hover:opacity-60 transition-all duration-[2500ms]"
+                class="w-full h-full object-cover sepia-filter transition-all duration-[2500ms]"
                 alt="Gallery Item"
               />
-              <div class="gallery-caption">
-                <p class="text-warm text-sm font-display">Gallery</p>
-                <p class="text-warm-muted text-xs mt-1">Moments</p>
-              </div>
+
             </div>
           </div>
           
           <script>
-            // Video hover logic
+            // Video hover logic and Scroll Animation for images
             document.addEventListener('DOMContentLoaded', () => {
               const galleryItems = document.querySelectorAll('.gallery-item');
               
@@ -680,32 +434,56 @@
                   });
                 }
               });
+
+              // Scroll observer for Mobile/Desktop image reveal
+              const filterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    const img = entry.target.querySelector('.sepia-filter');
+                    if (img) {
+                      img.classList.add('is-in-view');
+                    }
+                    // Optional: Unobserve if you want it to happen only once
+                    // observer.unobserve(entry.target);
+                  } else {
+                     // remove class if you want it to re-animate (toggle)
+                     const img = entry.target.querySelector('.sepia-filter');
+                     if (img) {
+                       img.classList.remove('is-in-view');
+                     }
+                  }
+                });
+              }, { threshold: 0.4 }); // 40% visible to trigger
+
+              galleryItems.forEach(item => filterObserver.observe(item));
             });
           </script>
 
         </div>
       </section>
+
       <!-- Contact Form Section -->
-      <section id="inquiry" class="px-6 md:px-12 lg:px-24 py-24 border-t border-warm">
+      <section id="inquiry" class="px-6 md:px-12 lg:px-24 py-24 fade-in-section">
         <div class="max-w-3xl mx-auto">
           <div class="text-center mb-12">
              <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">Let’s make some music.</p>
              <h2 class="font-display text-4xl md:text-4xl font-light">Every project starts with a conversation. Let's see if we are a good fit for each other.</h2>
           </div>
-          <form class="space-y-8" id="contact-form">
+
+          <form class="space-y-8" id="contact-form" novalidate>
             <div class="grid md:grid-cols-2 gap-8">
               <div class="space-y-2">
-                <label for="name" class="text-sm text-warm-muted tracking-wide uppercase">Name</label>
-                <input type="text" id="name" name="name" required class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors" placeholder="Your Name">
+                <label for="name" class="text-sm text-warm tracking-wide uppercase">Name</label>
+                <input type="text" id="name" name="name" required class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors placeholder-warm-muted" placeholder="Your Name">
               </div>
               <div class="space-y-2">
-                <label for="email" class="text-sm text-warm-muted tracking-wide uppercase">Email</label>
-                <input type="email" id="email" name="email" required class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors" placeholder="your@email.com">
+                <label for="email" class="text-sm text-warm tracking-wide uppercase">Email</label>
+                <input type="email" id="email" name="email" required class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors placeholder-warm-muted" placeholder="your@email.com">
               </div>
             </div>
             <div class="space-y-2">
-              <label for="message" class="text-sm text-warm-muted tracking-wide uppercase">Message</label>
-              <textarea id="message" name="message" required rows="4" class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors resize-none" placeholder="Tell me about your project..."></textarea>
+              <label for="message" class="text-sm text-warm tracking-wide uppercase">Message</label>
+              <textarea id="message" name="message" required rows="4" class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors resize-none placeholder-warm-muted" placeholder="Tell me about your project..."></textarea>
             </div>
             <div class="text-center pt-8">
               <button type="submit" class="inline-flex items-center gap-3 text-warm hover:text-white transition-colors duration-300 group">
@@ -717,131 +495,141 @@
             </div>
           </form>
           <script>
-            document.getElementById('contact-form').addEventListener('submit', async function(e) {
-              e.preventDefault();
-              const button = this.querySelector('button');
-              const originalText = button.innerHTML;
-              
-              button.innerHTML = '<span class="text-lg tracking-wide uppercase">Sending...</span>';
-              button.disabled = true;
-              
-              const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                message: document.getElementById('message').value
+            document.addEventListener('DOMContentLoaded', () => {
+              const form = document.getElementById('contact-form');
+              const inputs = form.querySelectorAll('input, textarea');
+
+              // Function to validate a single field
+              const validateField = (field) => {
+                if (!field.value.trim()) {
+                  field.classList.add('border-red-500');
+                  field.classList.remove('border-warm');
+                  return false;
+                } else {
+                  field.classList.remove('border-red-500');
+                  field.classList.add('border-warm');
+                  return true;
+                }
               };
-              
-              try {
-                const response = await fetch('/api/contact', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(formData)
+
+              // Add input listeners to remove error state on typing
+              inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                  if (input.classList.contains('border-red-500')) {
+                     validateField(input);
+                  }
                 });
                 
-                if (response.ok) {
-                  alert('Message sent successfully!');
-                  this.reset();
-                } else {
-                  alert('There was a problem sending your message.');
+                // Keep distinct focus style logic separate if needed, 
+                // but usually the CSS :focus will handle the active state.
+                // We just ensure the error border overrides the default layout border if invalid.
+              });
+
+              form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                inputs.forEach(input => {
+                  if (!validateField(input)) {
+                    isValid = false;
+                  }
+                });
+
+                if (!isValid) {
+                  // Optional: shake effect or scrolling to error could go here
+                  return; 
                 }
-              } catch (error) {
-                console.error('Error:', error);
-                alert('Connection error. Please try again.');
-              } finally {
-                button.innerHTML = originalText;
-                button.disabled = false;
-              }
+
+                // Proceed with submission
+                const button = this.querySelector('button');
+                const originalContent = button.innerHTML;
+                
+                button.innerHTML = '<span class="text-lg tracking-wide uppercase">Sending...</span>';
+                button.disabled = true;
+                
+                const formData = {
+                  name: document.getElementById('name').value,
+                  email: document.getElementById('email').value,
+                  message: document.getElementById('message').value
+                };
+                
+                try {
+                  const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                  });
+                  
+                  const result = await response.json();
+                  
+                  if (response.ok) {
+                    button.innerHTML = '<span class="text-lg tracking-wide uppercase">Message Sent</span>';
+                    form.reset();
+                    setTimeout(() => {
+                      button.innerHTML = originalContent;
+                      button.disabled = false;
+                    }, 3000);
+                  } else {
+                    throw new Error(result.message || 'Failed to send');
+                  }
+                } catch (error) {
+                  console.error('Error:', error);
+                  button.innerHTML = '<span class="text-lg tracking-wide uppercase text-red-500">Error Sending</span>';
+                  setTimeout(() => {
+                    button.innerHTML = originalContent;
+                    button.disabled = false;
+                  }, 3000);
+                }
+              });
             });
           </script>
         </div>
       </section>
-      <!-- Contact Footer -->
-      <footer
-        class="px-6 md:px-12 lg:px-24 py-24 border-t border-warm"
-      >
-        <div class="max-w-7xl mx-auto">
-          <div class="flex flex-col items-center gap-8">
-            <div class="flex gap-6">
-              <!-- Instagram -->
-              <a
-                href="https://instagram.com/luisteixeira8"
-                class="w-10 h-10 rounded-full border border-warm flex items-center justify-center text-warm-muted hover-warm transition-colors duration-300"
-                aria-label="Instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-              </a>
-              <!-- LinkedIn -->
-              <a
-                href="https://linkedin.com/in/luis-teixeira8"
-                class="w-10 h-10 rounded-full border border-warm flex items-center justify-center text-warm-muted hover-warm transition-colors duration-300"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </a>
-              <!-- Facebook -->
-              <a
-                href="https://facebook.com/luisteixeira8"
-                class="w-10 h-10 rounded-full border border-warm flex items-center justify-center text-warm-muted hover-warm transition-colors duration-300"
-                aria-label="Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
-              </a>
-            </div>
-            <p class="text-warm-muted text-sm text-center">
-              © 2026 Alba Music Lab. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+
+       <!-- Contact Footer -->
+       <footer class="footer bg-transparent flex flex-col items-center gap-4 p-6">
+         <div class="flex items-center gap-2">
+           <img src="images/logo.svg" alt="Alba Music Lab" class="h-16 w-auto opacity-80">
+         </div>
+         <aside>
+           <p class="text-warm-muted text-sm">©2026 <span class="font-medium text-warm">Alba Music Lab</span></p>
+         </aside>
+         <nav class="flex gap-6 text-warm-muted text-sm">
+           <a class="hover:text-warm transition-colors" href="#bio">About</a>
+           <a class="hover:text-warm transition-colors" href="#services">Services</a>
+           <a class="hover:text-warm transition-colors" href="#gallery">Portfolio</a>
+           <a class="hover:text-warm transition-colors" href="#inquiry">Contact</a>
+         </nav>
+         <div class="flex h-5 gap-4 items-center mt-2">
+           <a href="https://instagram.com/luisteixeira8" target="_blank" rel="noopener noreferrer" class="text-warm-muted hover:text-warm transition-colors" aria-label="Instagram">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+           </a>
+           <a href="https://linkedin.com/in/luis-teixeira8" target="_blank" rel="noopener noreferrer" class="text-warm-muted hover:text-warm transition-colors" aria-label="LinkedIn">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+           </a>
+           <a href="https://facebook.com/luisteixeira8" target="_blank" rel="noopener noreferrer" class="text-warm-muted hover:text-warm transition-colors" aria-label="Facebook">
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+           </a>
+         </div>
+       </footer>
     </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl transform translate-x-full transition-transform duration-500 ease-in-out flex items-center justify-center md:hidden">
+      <div class="flex flex-col gap-8 text-center">
+        <a href="#bio" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">About</a>
+        <a href="#services" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">Services</a>
+        <a href="#gallery" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">Portfolio</a>
+        <a href="#inquiry" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">Contact</a>
+      </div>
+      <button id="close-menu" class="absolute top-6 right-6 text-warm-muted hover:text-warm">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
     <script>
       const defaultConfig = {
         hero_title: "Let's craft your music",
@@ -909,9 +697,11 @@
           config.service_4_title || defaultConfig.service_4_title;
 
         // Footer
-        const emailEl = document.getElementById("footer-email");
-        emailEl.querySelector("span").textContent =
-          config.footer_email || defaultConfig.footer_email;
+        // Check if footer-email exists
+         const emailEl = document.getElementById("footer-email");
+         if (emailEl) {
+             emailEl.querySelector("span").textContent = config.footer_email || defaultConfig.footer_email;
+         }
 
         // Colors
         document.body.style.backgroundColor =
@@ -1023,15 +813,107 @@
           ["footer_email", cfg.footer_email || defaultConfig.footer_email],
         ]);
       }
+      
+      // Implement specific enhancements logic
+      document.addEventListener('DOMContentLoaded', () => {
+         // Mobile Menu Logic
+         const openMenuBtn = document.getElementById('open-menu');
+         const closeMenuBtn = document.getElementById('close-menu');
+         const mobileMenu = document.getElementById('mobile-menu');
+         const mobileLinks = document.querySelectorAll('.mobile-link');
 
-      if (window.elementSdk) {
-        window.elementSdk.init({
-          defaultConfig,
-          onConfigChange,
-          mapToCapabilities,
-          mapToEditPanelValues,
-        });
-      }
+         if(openMenuBtn && mobileMenu && closeMenuBtn) {
+             openMenuBtn.addEventListener('click', () => {
+                 mobileMenu.classList.remove('translate-x-full');
+             });
+             
+             closeMenuBtn.addEventListener('click', () => {
+                 mobileMenu.classList.add('translate-x-full');
+             });
+
+             mobileLinks.forEach(link => {
+                 link.addEventListener('click', () => {
+                    mobileMenu.classList.add('translate-x-full');
+                 });
+             });
+         }
+
+         // Scroll Animations
+         const observerOptions = {
+             root: null,
+             rootMargin: '0px',
+             threshold: 0.1
+         };
+
+         const observer = new IntersectionObserver((entries, observer) => {
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     entry.target.classList.add('is-visible');
+                     observer.unobserve(entry.target); 
+                 }
+             });
+         }, observerOptions);
+
+         const animatedElements = document.querySelectorAll('.fade-in-section');
+         animatedElements.forEach(el => observer.observe(el));
+
+         // Background darken on scroll
+         // Background darken on scroll
+         const scrollContainer = document.querySelector('.scroll-container');
+         
+         if (scrollContainer) {
+             scrollContainer.addEventListener('scroll', () => {
+                 const scrollPosition = scrollContainer.scrollTop;
+                 const windowHeight = window.innerHeight;
+                 
+                 // Calculate brightness: starts at 0.4, goes down to 0.1 after scrolling 100vh
+                 // Formula: 0.4 - (scroll / height) * 0.4
+                 // We clamp strictly between 0.05 (very dark) and 0.4 (original)
+                 let brightness = 0.4 - (scrollPosition / windowHeight) * 0.4;
+                 brightness = Math.max(0.05, Math.min(0.4, brightness)); 
+                 
+                 document.body.style.setProperty('--bg-brightness', brightness);
+             });
+         } else {
+             // Fallback for window scroll
+             window.addEventListener('scroll', () => {
+                  const scrollPosition = window.scrollY;
+                  const windowHeight = window.innerHeight;
+                  
+                  let brightness = 0.4 - (scrollPosition / windowHeight) * 0.4;
+                  brightness = Math.max(0.05, Math.min(0.4, brightness)); 
+                  
+                  document.body.style.setProperty('--bg-brightness', brightness);
+             });
+         }
+
+
+         // Custom Cursor
+         const cursorDot = document.querySelector('.cursor-dot');
+
+         if (window.matchMedia("(pointer: fine)").matches && cursorDot) {
+             window.addEventListener("mousemove", function (e) {
+                 const mouseX = e.clientX;
+                 const mouseY = e.clientY;
+
+                 // Dot follows immediately
+                 cursorDot.style.left = `${mouseX}px`;
+                 cursorDot.style.top = `${mouseY}px`;
+             });
+             
+             // Optional: Add hover effect to the dot itself if desired, or remove completely. 
+             // For now, removing the outline hover logic as the outline is gone.
+             const clickables = document.querySelectorAll('a, button, .cursor-pointer');
+             clickables.forEach(el => {
+                 el.addEventListener('mouseenter', () => {
+                     cursorDot.style.transform = 'translate(-50%, -50%) scale(2)';
+                 });
+                 el.addEventListener('mouseleave', () => {
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                 });
+             });
+         }
+      });
     </script>
   </body>
 </html>

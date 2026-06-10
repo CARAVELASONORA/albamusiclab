@@ -2,15 +2,8 @@
   "name": "alba-music-lab",
   "version": "1.0.0",
   "description": "Alba Music Lab Website",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.3",
-    "express": "^4.18.2",
-    "nodemailer": "^7.0.12"
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.24",

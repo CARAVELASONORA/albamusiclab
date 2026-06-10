@@ -508,21 +508,25 @@
              <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight leading-snug">Every project starts with a conversation. Let's see if we are a good fit for each other.</h2>
           </div>
 
-          <form class="space-y-8" id="contact-form" novalidate>
+          <form class="space-y-8" id="contact-form" action="https://formspree.io/f/xdavdqld" method="POST" novalidate>
             <div class="grid md:grid-cols-2 gap-8">
               <div class="space-y-2">
                 <label for="name" class="text-[0.65rem] font-bold text-ink tracking-widest uppercase">Name</label>
-                <input type="text" id="name" name="name" required class="input-minimal w-full p-4 text-sm font-medium placeholder:text-ink-mute" placeholder="Your Name">
+                <input type="text" id="name" name="name" required autocomplete="name" class="input-minimal w-full p-4 text-sm font-medium placeholder:text-ink-mute" placeholder="Your Name">
               </div>
               <div class="space-y-2">
                 <label for="email" class="text-[0.65rem] font-bold text-ink tracking-widest uppercase">Email</label>
-                <input type="email" id="email" name="email" required class="input-minimal w-full p-4 text-sm font-medium placeholder:text-ink-mute" placeholder="your@email.com">
+                <input type="email" id="email" name="email" required autocomplete="email" class="input-minimal w-full p-4 text-sm font-medium placeholder:text-ink-mute" placeholder="your@email.com">
               </div>
             </div>
             <div class="space-y-2">
               <label for="message" class="text-[0.65rem] font-bold text-ink tracking-widest uppercase">Message</label>
               <textarea id="message" name="message" required rows="4" class="input-minimal w-full p-4 text-sm font-medium resize-none placeholder:text-ink-mute" placeholder="Tell me about your project..."></textarea>
             </div>
+            <!-- Honeypot anti-spam: hidden from humans, bots fill it and get rejected -->
+            <input type="text" name="_gotcha" id="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" style="display:none !important">
+            <!-- Sets the email subject in Formspree -->
+            <input type="hidden" name="_subject" value="New inquiry from Alba Music Lab website">
             <div class="text-center pt-4">
               <button type="submit" class="btn-primary w-full md:w-auto inline-flex justify-center items-center gap-3 px-10 py-4 text-[0.7rem] font-bold tracking-widest uppercase rounded-sm group">
                 <span>Send Message</span>
@@ -535,6 +539,10 @@
               </button>
             </div>
           </form>
+          <!-- Success Message -->
+          <div id="form-success" class="mt-6 hidden p-4 bg-emerald-50 text-emerald-700 text-xs text-center border border-emerald-100 rounded-sm">
+            Thank you! Your message has been sent, we'll get back to you soon.
+          </div>
           <!-- Error Message -->
           <div id="form-error" class="mt-6 hidden p-4 bg-red-50 text-signal text-xs text-center border border-red-100 rounded-sm">
             Something went wrong while sending your message. Please try again.
@@ -542,8 +550,10 @@
           <script>
             document.addEventListener('DOMContentLoaded', () => {
               const form = document.getElementById('contact-form');
-              const inputs = form.querySelectorAll('input, textarea');
+              // Only validate visible user fields — skip honeypot and hidden meta fields
+              const inputs = form.querySelectorAll('input:not([name^="_"]), textarea');
               const formError = document.getElementById('form-error');
+              const formSuccess = document.getElementById('form-success');
 
               // Function to validate a single field
               const validateField = (field) => {
@@ -589,18 +599,22 @@
                 loader.classList.remove('hidden');
                 button.disabled = true;
                 formError.classList.add('hidden');
+                formSuccess.classList.add('hidden');
 
                 const formData = {
                   name: document.getElementById('name').value,
                   email: document.getElementById('email').value,
-                  message: document.getElementById('message').value
+                  message: document.getElementById('message').value,
+                  _subject: form.querySelector('[name="_subject"]').value,
+                  _gotcha: document.getElementById('_gotcha').value
                 };
 
                 try {
-                  const response = await fetch('/api/contact', {
+                  const response = await fetch(form.action, {
                     method: 'POST',
                     headers: {
-                      'Content-Type': 'application/json'
+                      'Content-Type': 'application/json',
+                      'Accept': 'application/json'
                     },
                     body: JSON.stringify(formData)
                   });
@@ -611,10 +625,12 @@
                     label.textContent = 'Message Sent';
                     loader.classList.add('hidden');
                     form.reset();
+                    formSuccess.classList.remove('hidden');
                     setTimeout(() => {
                       label.textContent = originalContent;
                       button.disabled = false;
-                    }, 3000);
+                      formSuccess.classList.add('hidden');
+                    }, 5000);
                   } else {
                     throw new Error(result.message || 'Failed to send');
                   }

@@ -3,7 +3,18 @@
   "version": "1.0.0",
   "description": "Alba Music Lab Website",
   "scripts": {
+<<<<<<< HEAD
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+=======
+    "start": "node server.js",
+    "dev:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.18.2",
+    "nodemailer": "^7.0.12"
+>>>>>>> 35a99219c1d81f758bc0bbbe39add723a631eabb
   },
   "devDependencies": {
     "autoprefixer": "^10.4.24",

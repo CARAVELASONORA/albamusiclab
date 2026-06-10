@@ -3,36 +3,49 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-pure: #ffffff;
+    --ink-main: #050505;
+    --ink-mute: #888888;
+    --accent-signal: #E52E2E; /* O Vermelho 'Record' / Sinal */
+    --line: #e5e5e5;
+  }
+
   body {
     @apply antialiased box-border;
     position: relative;
+    background-color: var(--bg-pure);
+    color: var(--ink-main);
   }
 
+  ::selection {
+    background-color: var(--accent-signal);
+    color: #ffffff;
+  }
+
+  /* Studio photo as a near-invisible texture behind everything */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background-image: url('../images/background.jpeg');
+    background-image: url('../images/background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(8px) brightness(var(--bg-brightness, 0.4));
-    transform: scale(1.1); /* Prevent blur edges */
-    z-index: -1;
-    transition: filter 0.1s linear;
+    filter: grayscale(1) blur(2px);
+    transform: scale(1.05); /* Prevent blur edges */
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
   }
 
-  body.scrolled-dark::before {
-    filter: blur(8px) brightness(0.1);
-  }
-  
   html, body {
      scroll-behavior: smooth;
      scrollbar-width: none; /* Firefox */
      -ms-overflow-style: none; /* IE/Edge */
      overflow-x: hidden; /* Prevent horizontal scroll */
   }
-  
+
   /* Hide scrollbar for Chrome, Safari and Opera */
   html::-webkit-scrollbar, body::-webkit-scrollbar {
     display: none;
@@ -43,46 +56,220 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   *::-webkit-scrollbar {
     display: none;
   }
 }
 
 @layer components {
-  .font-display {
-    font-family: "Cormorant Garamond", Georgia, serif;
+  /* text-ink, text-signal, bg-signal, border-line, font-display, font-body, etc.
+     are generated automatically from the colors/fontFamily in tailwind.config.js. */
+  .hover-ink:hover {
+    color: #050505;
   }
 
-  .font-body {
-    font-family: "Manrope", system-ui, sans-serif;
+  /* Oscilloscope / waveform draw animation (logo + dividers) */
+  .draw-wave {
+    stroke-dasharray: 150;
+    stroke-dashoffset: 150;
+    animation: drawWaveform 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.8s;
   }
 
-  .text-warm {
-    color: #e8dcc4;
+  @keyframes drawWaveform {
+    to { stroke-dashoffset: 0; }
   }
 
-  .text-warm-muted {
-    color: #a69b8a;
+  .wave-glow {
+    filter: drop-shadow(0 0 2px rgba(229, 46, 46, 0.4));
   }
 
-  .bg-warm-accent {
-    background-color: #c4a574;
+  /* Section divider: the acoustic signature line.
+     Dash length must cover the full path length (~500 with the zigzag), not just the 400 viewBox width. */
+  .signature-divider {
+    stroke-dasharray: 520;
+    stroke-dashoffset: 520;
+    transition: stroke-dashoffset 2.5s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  .border-warm {
-    border-color: #3d3a35;
+  .is-visible .signature-divider {
+    stroke-dashoffset: 0;
   }
 
-  .hover-warm:hover {
-    color: #c4a574;
+  /* Signal bridge: the thread that links one chapter to the next.
+     Sequence on reveal: top line drops in → wave draws → bottom line continues. */
+  .signal-bridge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .bridge-line {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, transparent, var(--accent-signal));
+    opacity: 0.6;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .bridge-line-bottom {
+    background: linear-gradient(to bottom, var(--accent-signal), transparent);
+    transition-delay: 2s;
+  }
+
+  .signal-bridge .signature-divider {
+    transition-delay: 0.5s;
+  }
+
+  .signal-bridge.is-visible .bridge-line {
+    transform: scaleY(1);
+  }
+
+  @media (min-width: 768px) {
+    .bridge-line {
+      height: 56px;
+    }
+  }
+
+  /* Hero thread: where the signal starts, leading into the first chapter */
+  .hero-thread {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 10;
+  }
+
+  .thread-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background-color: var(--accent-signal);
+    animation: dotPulse 2.4s ease-in-out infinite;
+  }
+
+  .thread-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--accent-signal), transparent);
+    transform-origin: top;
+    animation: threadFlow 2.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  }
+
+  @keyframes threadFlow {
+    0% { transform: scaleY(0); opacity: 1; }
+    60% { transform: scaleY(1); opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0; }
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+  }
+
+  /* Heartbeat on the hero microcopy dots */
+  #hero-subtitle .signal-dot {
+    animation: dotPulse 2.4s ease-in-out infinite;
+  }
+
+  #hero-subtitle .signal-dot:nth-of-type(2) {
+    animation-delay: 0.4s;
+  }
+
+  .logo-container {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .logo-container:hover {
+    transform: scale(1.02);
+  }
+
+  /* Frosted panel from the identity system */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  }
+
+  .input-minimal {
+    background: transparent;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .input-minimal:focus {
+    outline: none;
+    border-color: var(--ink-main);
+    box-shadow: 0 0 0 1px var(--ink-main);
+  }
+
+  .input-minimal.input-error {
+    border-color: var(--accent-signal);
+    box-shadow: 0 0 0 1px var(--accent-signal);
+  }
+
+  .btn-primary {
+    background-color: var(--ink-main);
+    color: var(--bg-pure);
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #222;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Red signal loader (waveform bars) */
+  .loader-wave {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    height: 12px;
+  }
+  .loader-wave span {
+    display: block;
+    width: 2px;
+    height: 100%;
+    background-color: var(--accent-signal);
+    animation: wave 1s infinite ease-in-out;
+  }
+  .loader-wave span:nth-child(2) { animation-delay: 0.1s; }
+  .loader-wave span:nth-child(3) { animation-delay: 0.2s; }
+  .loader-wave span:nth-child(4) { animation-delay: 0.3s; }
+  .loader-wave span:nth-child(5) { animation-delay: 0.4s; }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.2); }
+    50% { transform: scaleY(1); }
   }
 
   .service-card {
     position: relative;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 10%;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
   }
 
   .service-card::before {
@@ -90,13 +277,14 @@
     @apply absolute inset-0 z-[1];
     background: linear-gradient(
       180deg,
-      transparent 40%,
-      rgba(0, 0, 0, 0.8) 100%
+      transparent 35%,
+      rgba(5, 5, 5, 0.85) 100%
     );
   }
 
   .service-card:hover {
-    transform: scale(1.02);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(5, 5, 5, 0.12);
   }
 
   .service-card:hover .service-number {
@@ -105,7 +293,7 @@
   }
 
   .service-number {
-    opacity: 0.5;
+    opacity: 0.6;
     transform: translateY(10px);
     transition: all 0.4s ease;
   }
@@ -124,52 +312,64 @@
     max-height: 100px;
   }
 
+  /* Mobile first: no hover on touch — show service text by default */
+  @media (hover: none), (max-width: 767px) {
+    .service-number {
+      opacity: 1;
+      transform: none;
+    }
+
+    .service-description {
+      opacity: 1;
+      transform: none;
+      max-height: 100px;
+    }
+  }
+
   .gallery-item {
     position: relative;
     overflow: hidden;
     cursor: pointer;
     transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-    border-radius: 10%;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
   }
 
   .gallery-item:hover {
-    transform: scale(1.05);
     z-index: 10;
+    box-shadow: 0 20px 50px rgba(5, 5, 5, 0.12);
   }
 
-  .gallery-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem;
-    transform: translateY(100%);
-    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-    z-index: 20;
+  /* Slow zoom into the moment on hover */
+  .gallery-item img,
+  .gallery-item video {
+    transition: filter 1.5s cubic-bezier(0.19, 1, 0.22, 1), transform 2s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
-  .gallery-item:hover .gallery-caption {
-    transform: translateY(0);
+  .gallery-item:hover img,
+  .gallery-item:hover video {
+    transform: scale(1.06);
   }
 
   .fade-in {
-    animation: fadeIn 1s ease forwards;
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
   }
 
   .fade-in-delay-1 {
-    animation: fadeIn 1s ease 0.2s forwards;
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
     opacity: 0;
   }
 
   .fade-in-delay-2 {
-    animation: fadeIn 1s ease 0.4s forwards;
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
     opacity: 0;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(15px);
     }
     to {
       opacity: 1;
@@ -184,7 +384,7 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    opacity: 0.03;
+    opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     z-index: 1000;
   }
@@ -194,80 +394,22 @@
   }
 
   .studio-image {
-    background: linear-gradient(
-      135deg,
-      #1a1917 0%,
-      #2d2a26 50%,
-      #1a1917 100%
-    );
+    background: #f5f5f5;
     position: relative;
-    border-radius: 10%;
+    border-radius: 4px;
+    border: 1px solid #e5e5e5;
     overflow: hidden; /* Ensure image inside respects the radius */
   }
 
-  .studio-image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at 30% 40%,
-      rgba(196, 165, 116, 0.1) 0%,
-      transparent 50%
-    );
-  }
-
-  .gallery-grid-item {
-    background: linear-gradient(
-      135deg,
-      #1a1917 0%,
-      #2d2a26 50%,
-      #1a1917 100%
-    );
-    position: relative;
-  }
-
-  .gallery-grid-item::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at 50% 50%,
-      rgba(196, 165, 116, 0.08) 0%,
-      transparent 60%
-    );
-  }
-  
-  .gallery-item::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      transparent 20%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    opacity: 1;
-    z-index: 1;
-  }
-
-  .sepia-filter {
-    filter: sepia(0.4);
+  /* Monochrome until in view / hover — the page "presses record" on the image */
+  .tone-filter {
+    filter: grayscale(1);
     transition: filter 1.5s cubic-bezier(0.19, 1, 0.22, 1);
   }
-  
-  .group:hover .sepia-filter,
-  .sepia-filter.is-in-view {
-    filter: sepia(0);
-  }
 
-  /* Custom Cursor */
-  .cursor-dot {
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+  .group:hover .tone-filter,
+  .tone-filter.is-in-view {
+    filter: grayscale(0);
   }
 
   /* Scroll Reveal */
@@ -282,26 +424,19 @@
     opacity: 1;
     transform: none;
   }
+
+  /* Identity microcopy label: red dot + tracked uppercase */
+  .signal-label {
+    @apply text-[0.65rem] uppercase tracking-widest font-bold text-signal inline-flex items-center gap-2 justify-center;
+  }
+
+  .signal-dot {
+    @apply w-1.5 h-1.5 bg-signal rounded-full inline-block;
+  }
 }
 
 @layer utilities {
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
   @view-transition {
     navigation: auto;
-  }
-
-  .animate-spin-slow {
-    animation: spin 20s linear infinite;
-  }
-
-  .animate-reverse-spin-slow {
-    animation: spin 25s linear infinite reverse;
-  }
-
-  .animate-pulse-slow {
-    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }

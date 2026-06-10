@@ -3,57 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alba Music Lab</title>
+    <title>Alba Music Lab — The Acoustic Signature</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link href="./dist/output.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Manrope:wght@300;400;500&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700;900&amp;display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="h-full bg-black text-warm font-body">
+  <body class="h-full bg-paper text-ink font-body">
     <div class="grain"></div>
     <div class="h-full overflow-auto scroll-container">
       <!-- Navigation -->
       <nav
-        class="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12"
+        class="fixed top-0 left-0 right-0 z-50 px-6 py-5 md:px-12"
       >
         <!-- Extended Gradient Background -->
-        <div class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black via-black/60 to-transparent -z-10 pointer-events-none"></div>
+        <div class="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-white via-white/70 to-transparent -z-10 pointer-events-none"></div>
 
         <div class="flex justify-between items-center relative">
-          <!-- Centered Logo -->
-          <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <img src="images/logo.svg" alt="Alba Music Lab Logo" class="h-20 w-auto">
+          <!-- Logo: mark + wordmark -->
+          <a href="#" class="flex items-center gap-3 group">
+            <svg class="h-12 w-12 md:h-14 md:w-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Alba Music Lab logo">
+              <defs>
+                <mask id="nav-void-cut">
+                  <rect width="100" height="100" fill="white"></rect>
+                  <rect x="0" y="55" width="100" height="16" fill="black"></rect>
+                </mask>
+              </defs>
+              <path d="M50 10 L15 85 H32 L50 45 L68 85 H85 L50 10Z" fill="#050505" mask="url(#nav-void-cut)"></path>
+              <path d="M 26.5 64 L 28.5 64 L 31 59 L 34 68 L 37 60 L 40 66 L 42 63 L 45 64 L 51 64 L 54 56 L 57 71 L 60 59 L 63 67 L 65 64 L 73.5 64" fill="none" stroke="#E52E2E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <span class="leading-none">
+              <span class="block text-lg font-black tracking-tighter">ALBA</span>
+              <span class="block text-[0.6rem] font-light uppercase tracking-[0.2em] text-ink-mute mt-0.5">Music Lab</span>
+            </span>
           </a>
-          
-          <!-- Left spacer (or eventually left links if needed) -->
-          <div class="hidden md:block"></div>
 
           <!-- Right side: Menu links (Desktop) -->
           <div
-            class="hidden md:flex gap-8 text-sm tracking-wide text-warm-muted ml-auto"
+            class="hidden md:flex gap-8 text-[0.7rem] font-medium uppercase tracking-widest text-ink-mute"
           >
-            <a href="#bio" class="hover-warm transition-colors duration-300"
+            <a href="#bio" class="hover-ink transition-colors duration-300"
               >About</a
             >
             <a
               href="#services"
-              class="hover-warm transition-colors duration-300"
+              class="hover-ink transition-colors duration-300"
               >Services</a
             >
-            <a href="#gallery" class="hover-warm transition-colors duration-300"
+            <a href="#gallery" class="hover-ink transition-colors duration-300"
               >Portfolio</a
             >
-            <a href="#inquiry" class="hover-warm transition-colors duration-300"
+            <a href="#inquiry" class="hover-ink transition-colors duration-300"
               >Contact</a
             >
           </div>
-          
+
           <!-- Mobile Menu Button (Right aligned by default in flex) -->
-          <button id="open-menu" class="md:hidden text-warm-muted ml-auto">
+          <button id="open-menu" class="md:hidden text-ink ml-auto" aria-label="Open menu">
             <svg
               width="24"
               height="24"
@@ -70,26 +81,26 @@
       <section
         class="relative h-screen flex flex-col justify-center items-center text-center px-6"
       >
-        <!-- Background Elements -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none fade-in">
-        </div>
-
-        <div class="relative z-10 max-w-4xl mx-auto">
+        <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center w-full">
           <p
-            class="text-warm-muted text-sm md:text-base tracking-[0.3em] uppercase mb-6 fade-in"
+            class="flex items-center justify-center gap-3 text-ink-mute text-[0.65rem] md:text-xs font-bold tracking-widest uppercase mb-8 fade-in"
             id="hero-subtitle"
           >
-            Composing • Producing • Scoring
+            <span>Composing</span>
+            <span class="signal-dot"></span>
+            <span>Producing</span>
+            <span class="signal-dot"></span>
+            <span>Scoring</span>
           </p>
           <h1
-            class="font-display text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-12 fade-in-delay-1"
+            class="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] mb-12 fade-in-delay-1"
             id="hero-title"
           >
-            Let's craft<br /><em class="font-light">your music</em>
+            Let's craft<br /><span class="font-light tracking-tight">your music</span>
           </h1>
           <a
             href="#bio"
-            class="inline-flex items-center gap-3 text-warm-muted text-sm tracking-wide hover-warm transition-colors duration-300 fade-in-delay-2"
+            class="btn-primary w-full sm:w-auto inline-flex justify-center items-center gap-3 px-8 py-4 text-[0.7rem] font-bold tracking-widest uppercase rounded-sm fade-in-delay-2"
           >
             <span>Come in</span>
             <svg
@@ -102,224 +113,244 @@
               <path d="M8 3v10M3 8l5 5 5-5" /></svg
           ></a>
         </div>
+
+        <!-- The signal starts here: thread leading into the first chapter -->
+        <div class="hero-thread fade-in-delay-2" aria-hidden="true">
+          <span class="thread-dot"></span>
+          <span class="thread-line"></span>
+        </div>
       </section>
-      
+
       <!-- Bio Section -->
       <section
         id="bio"
-        class="min-h-screen px-6 md:px-12 lg:px-24 py-24 flex items-center fade-in-section"
+        class="px-6 md:px-12 lg:px-24 py-16 md:py-24 md:min-h-screen flex items-center fade-in-section relative z-10"
       >
         <div
           class="grid md:grid-cols-2 gap-12 lg:gap-24 items-center max-w-7xl mx-auto w-full"
         >
-          <div class="studio-image aspect-[4/5] rounded-sm group hidden md:block">
-            <img 
-              src="images/about.jpg" 
-              alt="The Person Behind the Music" 
-              class="w-full h-full object-cover rounded-sm sepia-[0.4] group-hover:sepia-0 transition-all duration-700"
+          <div class="studio-image aspect-[4/5] group hidden md:block">
+            <img
+              src="images/about.webp"
+              alt="The Person Behind the Music"
+              class="w-full h-full object-cover tone-filter"
             />
           </div>
           <div>
-            <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">
-              About
+            <p class="signal-label justify-start mb-6">
+              <span class="signal-dot"></span> About
             </p>
             <h2
-              class="font-display text-4xl md:text-5xl font-light mb-8 leading-tight"
+              class="font-display text-4xl md:text-5xl font-black tracking-tighter mb-8 leading-[1.02]"
               id="bio-title"
             >
               The Person Behind<br />
               the Music
             </h2>
-            
+
             <!-- Mobile Image (visible on mobile only) -->
-            <div class="studio-image aspect-[4/5] rounded-sm group md:hidden mb-8">
-              <img 
-                src="images/about.jpg" 
-                alt="The Person Behind the Music" 
-                class="w-full h-full object-cover rounded-sm sepia-[0.4] group-hover:sepia-0 transition-all duration-700"
+            <div class="studio-image aspect-[4/5] group md:hidden mb-8">
+              <img
+                src="images/about.webp"
+                alt="The Person Behind the Music"
+                class="w-full h-full object-cover tone-filter"
               />
             </div>
             <div
-              class="space-y-6 text-warm-muted leading-relaxed"
+              class="space-y-6 text-ink-mute leading-relaxed text-sm md:text-base"
               id="bio-text"
             >
               <p>
-                I don’t view production as a technical service; 
-                I view it as a musical conversation. With years 
-                spent between the studio and the road—directing 
-                musicals, composing for TV, and playing alongside 
-                countless artists—I’ve learned that the best work 
+                I don’t view production as a technical service;
+                I view it as a musical conversation. With years
+                spent between the studio and the road—directing
+                musicals, composing for TV, and playing alongside
+                countless artists—I’ve learned that the best work
                 comes from emotion, not just perfectly EQ'd frequencies.
               </p>
               <p>
-                My role isn’t just to hit record; it’s to listen 
-                to your vision and use my experience to help you 
+                My role isn’t just to hit record; it’s to listen
+                to your vision and use my experience to help you
                 find your voice. No ego, just the music.
               </p>
             </div>
-            <div class="mt-12 pt-8 border-t border-warm flex gap-12">
+            <div class="mt-12 pt-8 border-t border-line grid grid-cols-3 gap-4 md:gap-12">
               <div>
-                <p class="font-display text-3xl text-warm">75+</p>
-                <p class="text-warm-muted text-sm mt-1">Works</p>
+                <p class="stat-number font-display text-3xl font-black tracking-tighter text-ink" data-target="75" data-suffix="+">0+</p>
+                <p class="text-ink-mute text-[0.65rem] uppercase tracking-widest font-bold mt-2">Works</p>
               </div>
               <div>
-                <p class="font-display text-3xl text-warm">350+</p>
-                <p class="text-warm-muted text-sm mt-1">Live Performances</p>
+                <p class="stat-number font-display text-3xl font-black tracking-tighter text-ink" data-target="350" data-suffix="+">0+</p>
+                <p class="text-ink-mute text-[0.65rem] uppercase tracking-widest font-bold mt-2">Live Performances</p>
               </div>
               <div>
-                <p class="font-display text-3xl text-warm">12+</p>
-                <p class="text-warm-muted text-sm mt-1">Years</p>
+                <p class="stat-number font-display text-3xl font-black tracking-tighter text-ink" data-target="12" data-suffix="+">0+</p>
+                <p class="text-ink-mute text-[0.65rem] uppercase tracking-widest font-bold mt-2">Years</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Signal bridge: Bio → Services -->
+      <div class="signal-bridge fade-in-section" aria-hidden="true">
+        <span class="bridge-line bridge-line-top"></span>
+        <svg class="w-full max-w-3xl h-10 px-6" viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="signature-divider wave-glow" d="M 0 20 L 110 20 L 118 12 L 127 30 L 136 10 L 145 27 L 152 17 L 160 22 L 200 20 L 240 20 L 249 6 L 258 34 L 267 12 L 276 28 L 283 20 L 400 20" fill="none" stroke="#E52E2E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span class="bridge-line bridge-line-bottom"></span>
+      </div>
+
       <!-- Services Section -->
-      <section id="services" class="px-6 md:px-12 lg:px-24 py-24 fade-in-section">
+      <section id="services" class="px-6 md:px-12 lg:px-24 py-16 md:py-24 relative z-10">
         <div class="max-w-7xl mx-auto">
-          <div class="text-center mb-16">
-            <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">
-              What we Do
+          <div class="text-center mb-10 md:mb-16 fade-in-section">
+            <p class="signal-label mb-6">
+              <span class="signal-dot"></span> What we Do <span class="signal-dot"></span>
             </p>
-            <h2 class="font-display text-4xl md:text-5xl font-light">
+            <h2 class="font-display text-4xl md:text-5xl font-black tracking-tighter">
               Services
             </h2>
           </div>
           <div class="grid md:grid-cols-2 gap-4">
             <!-- Scoring -->
+            <div class="fade-in-section">
             <div
-              class="service-card aspect-[4/3] rounded-sm cursor-pointer group"
-              style="
-                background: linear-gradient(145deg, #1f1d1a 0%, #151412 100%);
-              "
+              class="service-card aspect-[4/3] cursor-pointer group bg-ink"
             >
-              <img 
-                src="images/scoring.jpg" 
-                class="absolute inset-0 w-full h-full object-cover opacity-40 sepia-[0.4] group-hover:sepia-0 group-hover:opacity-60 transition-all duration-700"
+              <img
+                src="images/scoring.webp"
+                class="absolute inset-0 w-full h-full object-cover opacity-50 tone-filter group-hover:opacity-70"
                 alt="Scoring & Composition"
               />
               <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
                 <span
-                  class="service-number font-display text-4xl text-warm opacity-20 mb-2"
-                  >Scoring & Composition</span
+                  class="service-number text-[0.65rem] uppercase tracking-widest font-bold text-signal mb-2"
+                  >01 — Scoring &amp; Composition</span
                 >
                 <h3
-                  class="font-display text-2xl md:text-2xl"
+                  class="font-display text-2xl md:text-2xl font-bold tracking-tight text-white"
                   id="service-1-title"
                 >
                   Musical Storytelling
                 </h3>
-                <p class="service-description text-warm-muted text-xs mt-1 max-w-xs">
-                  Music serves the narrative. I work closely with directors and creators 
-                  to find the specific musical pulse your scene needs, composing themes that 
+                <p class="service-description text-white/70 text-xs mt-1 max-w-xs">
+                  Music serves the narrative. I work closely with directors and creators
+                  to find the specific musical pulse your scene needs, composing themes that
                   speak where words fail.
                 </p>
               </div>
             </div>
+            </div>
             <!-- Studio Production -->
+            <div class="fade-in-section" style="transition-delay: 0.15s">
             <div
-              class="service-card aspect-[4/3] rounded-sm cursor-pointer group"
-              style="
-                background: linear-gradient(145deg, #1a1815 0%, #121110 100%);
-              "
+              class="service-card aspect-[4/3] cursor-pointer group bg-ink"
             >
-              <img 
-                src="images/studio.jpg" 
-                class="absolute inset-0 w-full h-full object-cover opacity-40 sepia-[0.4] group-hover:sepia-0 group-hover:opacity-60 transition-all duration-700"
+              <img
+                src="images/studio.webp"
+                class="absolute inset-0 w-full h-full object-cover opacity-50 tone-filter group-hover:opacity-70"
                 alt="Studio Production"
               />
               <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
                 <span
-                  class="service-number font-display text-4xl text-warm opacity-20 mb-2"
-                  >Production & Identity</span
+                  class="service-number text-[0.65rem] uppercase tracking-widest font-bold text-signal mb-2"
+                  >02 — Production &amp; Identity</span
                 >
                 <h3
-                  class="font-display text-2xl md:text-2xl"
+                  class="font-display text-2xl md:text-2xl font-bold tracking-tight text-white"
                   id="service-2-title"
                 >
                   Studio Production
                 </h3>
-                <p class="service-description text-warm-muted text-xs mt-1 max-w-xs">
-                  This is a collaboration. We sit down, we deconstruct your ideas, and we 
-                  find the musical identity that fits you. It’s about creating a safe space 
+                <p class="service-description text-white/70 text-xs mt-1 max-w-xs">
+                  This is a collaboration. We sit down, we deconstruct your ideas, and we
+                  find the musical identity that fits you. It’s about creating a safe space
                   to experiment with arrangements until the music feels right.
                 </p>
               </div>
             </div>
+            </div>
             <!-- Live Direction -->
+            <div class="fade-in-section" style="transition-delay: 0.3s">
             <div
-              class="service-card aspect-[4/3] rounded-sm cursor-pointer group"
-              style="
-                background: linear-gradient(145deg, #1c1a17 0%, #13120f 100%);
-              "
+              class="service-card aspect-[4/3] cursor-pointer group bg-ink"
             >
-              <img 
-                src="images/live.jpg" 
-                class="absolute inset-0 w-full h-full object-cover opacity-40 sepia-[0.4] group-hover:sepia-0 group-hover:opacity-60 transition-all duration-700"
+              <img
+                src="images/live.webp"
+                class="absolute inset-0 w-full h-full object-cover opacity-50 tone-filter group-hover:opacity-70"
                 alt="Live Direction"
               />
               <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
                 <span
-                  class="service-number font-display text-4xl text-warm opacity-20 mb-2"
-                  >Live Direction</span
+                  class="service-number text-[0.65rem] uppercase tracking-widest font-bold text-signal mb-2"
+                  >03 — Live Direction</span
                 >
                 <h3
-                  class="font-display text-2xl md:text-2xl"
+                  class="font-display text-2xl md:text-2xl font-bold tracking-tight text-white"
                   id="service-3-title"
                 >
                   From Studio to Stage
                 </h3>
-                <p class="service-description text-warm-muted text-xs mt-1 max-w-xs">
-                  Taking music to a live audience requires a different mindset. 
-                  I help translate our studio arrangements into a live musical 
+                <p class="service-description text-white/70 text-xs mt-1 max-w-xs">
+                  Taking music to a live audience requires a different mindset.
+                  I help translate our studio arrangements into a live musical
                   experience, ensuring you feel secure and powerful when you step on stage.
                 </p>
               </div>
             </div>
+            </div>
             <!-- The Learn -->
+            <div class="fade-in-section" style="transition-delay: 0.45s">
             <div
-              class="service-card aspect-[4/3] rounded-sm cursor-pointer group"
-              style="
-                background: linear-gradient(145deg, #1e1c19 0%, #141311 100%);
-              "
+              class="service-card aspect-[4/3] cursor-pointer group bg-ink"
             >
-              <img 
-                src="images/learn.jpg" 
-                class="absolute inset-0 w-full h-full object-cover opacity-40 sepia-[0.4] group-hover:sepia-0 group-hover:opacity-60 transition-all duration-700"
+              <img
+                src="images/learn.webp"
+                class="absolute inset-0 w-full h-full object-cover opacity-50 tone-filter group-hover:opacity-70"
                 alt="The Learn"
               />
               <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
                 <span
-                  class="service-number font-display text-4xl text-warm opacity-20 mb-2"
-                  >The Learn</span
+                  class="service-number text-[0.65rem] uppercase tracking-widest font-bold text-signal mb-2"
+                  >04 — The Learn</span
                 >
                 <h3
-                  class="font-display text-2xl md:text-2xl"
+                  class="font-display text-2xl md:text-2xl font-bold tracking-tight text-white"
                   id="service-4-title"
                 >
                   Sharing the Craft
                 </h3>
-                <p class="service-description text-warm-muted text-xs mt-1 max-w-xs">
-                  No secrets, no gatekeeping. A space for us to sit down—online or in 
-                  person—and discuss artistry, composition, and the reality of a career 
+                <p class="service-description text-white/70 text-xs mt-1 max-w-xs">
+                  No secrets, no gatekeeping. A space for us to sit down—online or in
+                  person—and discuss artistry, composition, and the reality of a career
                   in music. Mentorship based on real-world experience.
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Signal bridge: Services → Gallery -->
+      <div class="signal-bridge fade-in-section" aria-hidden="true">
+        <span class="bridge-line bridge-line-top"></span>
+        <svg class="w-full max-w-3xl h-10 px-6" viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="signature-divider wave-glow" d="M 0 20 L 110 20 L 118 12 L 127 30 L 136 10 L 145 27 L 152 17 L 160 22 L 200 20 L 240 20 L 249 6 L 258 34 L 267 12 L 276 28 L 283 20 L 400 20" fill="none" stroke="#E52E2E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span class="bridge-line bridge-line-bottom"></span>
+      </div>
+
       <!-- Gallery Section -->
-      <section id="gallery" class="px-6 md:px-12 lg:px-24 py-24 fade-in-section">
+      <section id="gallery" class="px-6 md:px-12 lg:px-24 py-16 md:py-24 fade-in-section relative z-10">
         <div class="max-w-7xl mx-auto">
-          <div class="text-center mb-16">
-            <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">
-              Portfolio
+          <div class="text-center mb-10 md:mb-16">
+            <p class="signal-label mb-6">
+              <span class="signal-dot"></span> Portfolio <span class="signal-dot"></span>
             </p>
             <h2
-              class="font-display text-4xl md:text-5xl font-light"
+              class="font-display text-4xl md:text-5xl font-black tracking-tighter"
               id="gallery-title"
             >
               Visual Journey
@@ -328,101 +359,93 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- Row 1 -->
             <!-- Video 1 - Wide (2 cols) -->
-            <div class="gallery-item h-80 rounded-sm overflow-hidden relative group">
-              <video 
-                src="portefolio/video1.MOV" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
-                muted 
-                loop 
+            <div class="gallery-item h-80 overflow-hidden relative group">
+              <video
+                src="portefolio/video1.mp4"
+                class="w-full h-full object-cover tone-filter transition-all duration-[1500ms]"
+                muted
+                loop
                 playsinline
               ></video>
 
             </div>
 
             <!-- Image 1 - Portrait (1 col) -->
-            <div class="gallery-item md:col-span-2 h-80 rounded-sm overflow-hidden relative group">
-              <img 
-                src="portefolio/IMG_9937.jpg" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
+            <div class="gallery-item md:col-span-2 h-80 overflow-hidden relative group">
+              <img
+                src="portefolio/IMG_9937.webp"
+                class="w-full h-full object-cover tone-filter transition-all duration-[1500ms]"
                 alt="Portrait"
               />
 
             </div>
 
             <!-- Row 2 -->
-            <!-- Image 2 - Landscape (Wide) (2 cols) -> Swapped order to fit grid flow if needed, but manual span is best -->
-            <!-- Ideally: [Land(2)][Vert(1)] -->
-            <div class="gallery-item md:col-span-2 h-80 rounded-sm overflow-hidden relative group">
-              <img 
-                src="portefolio/EAF8AE45-63A4-42F0-9176-B8329CFD4A40.JPG" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
+            <div class="gallery-item md:col-span-2 h-80 overflow-hidden relative group">
+              <img
+                src="portefolio/producao.webp"
+                class="w-full h-full object-cover tone-filter transition-all duration-[1500ms]"
                 alt="Production"
               />
 
             </div>
 
              <!-- Video 2 - Vertical (1 col) -->
-             <div class="gallery-item h-80 rounded-sm overflow-hidden relative group">
-              <video 
-                src="portefolio/video2.MOV" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
-                muted 
-                loop 
+             <div class="gallery-item h-80 overflow-hidden relative group">
+              <video
+                src="portefolio/video2.mp4"
+                class="w-full h-full object-cover tone-filter transition-all duration-[1500ms]"
+                muted
+                loop
                 playsinline
               ></video>
 
             </div>
 
             <!-- Row 3 -->
-            <!-- Image 3 - Landscape (1 col) -->
-            <div class="gallery-item h-96 rounded-sm overflow-hidden relative group">
-              <img 
-                src="portefolio/IMG_1051.JPG" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
+            <div class="gallery-item h-96 overflow-hidden relative group">
+              <img
+                src="portefolio/IMG_1051.webp"
+                class="w-full h-full object-cover tone-filter transition-all duration-[1500ms]"
                 alt="Performance"
               />
 
             </div>
 
-            <!-- JPG (converted HEIC) 1 (Portrait) (1 col) -->
-            <div class="gallery-item h-96 rounded-sm overflow-hidden relative group">
-              <img 
-                src="portefolio/E59DC0DE-27DE-4758-9FF1-F7225F8FC341.JPG" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
+            <div class="gallery-item h-96 overflow-hidden relative group">
+              <img
+                src="portefolio/concerto.webp"
+                class="w-full h-full object-cover tone-filter transition-all duration-[1500ms]"
                 alt="Concert"
               />
 
             </div>
 
-            <!-- JPG (converted HEIC) 2 (Portrait) (1 col) -->
-            <div class="gallery-item h-96 rounded-sm overflow-hidden relative group">
-              <img 
-                src="portefolio/IMG_9998_2.jpg" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[1500ms]"
+            <div class="gallery-item h-96 overflow-hidden relative group">
+              <img
+                src="portefolio/IMG_9998_2.webp"
+                class="w-full h-full object-cover tone-filter transition-all duration-[1500ms]"
                 alt="Studio"
               />
 
             </div>
 
             <!-- Row 4 -->
-            <!-- JPG (converted HEIC) 3 (Wide Banner) (3 cols) -->
-            <!-- Adjusted span for responsive: md:col-span-2 (centered?) or full width? -->
-            <!-- Let's make it full width on lg -->
-            <div class="gallery-item md:col-span-2 lg:col-span-3 h-[500px] rounded-sm overflow-hidden relative group">
-              <img 
-                src="portefolio/imagem1.jpg" 
-                class="w-full h-full object-cover sepia-filter transition-all duration-[2500ms]"
+            <div class="gallery-item md:col-span-2 lg:col-span-3 h-[500px] overflow-hidden relative group">
+              <img
+                src="portefolio/imagem1.webp"
+                class="w-full h-full object-cover tone-filter transition-all duration-[2500ms]"
                 alt="Gallery Item"
               />
 
             </div>
           </div>
-          
+
           <script>
             // Video hover logic and Scroll Animation for images
             document.addEventListener('DOMContentLoaded', () => {
               const galleryItems = document.querySelectorAll('.gallery-item');
-              
+
               galleryItems.forEach(item => {
                 const video = item.querySelector('video');
                 if (video) {
@@ -436,21 +459,25 @@
               });
 
               // Scroll observer for Mobile/Desktop image reveal
+              const touchDevice = window.matchMedia('(hover: none)').matches;
               const filterObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                    const img = entry.target.querySelector('.sepia-filter');
-                    if (img) {
+                  const img = entry.target.querySelector('.tone-filter');
+                  if (img) {
+                    if (entry.isIntersecting) {
                       img.classList.add('is-in-view');
+                    } else {
+                      img.classList.remove('is-in-view');
                     }
-                    // Optional: Unobserve if you want it to happen only once
-                    // observer.unobserve(entry.target);
-                  } else {
-                     // remove class if you want it to re-animate (toggle)
-                     const img = entry.target.querySelector('.sepia-filter');
-                     if (img) {
-                       img.classList.remove('is-in-view');
-                     }
+                  }
+                  // On touch devices there is no hover: play videos while in view
+                  const video = entry.target.querySelector('video');
+                  if (video && touchDevice) {
+                    if (entry.isIntersecting) {
+                      video.play().catch(() => {});
+                    } else {
+                      video.pause();
+                    }
                   }
                 });
               }, { threshold: 0.4 }); // 40% visible to trigger
@@ -462,52 +489,69 @@
         </div>
       </section>
 
+      <!-- Signal bridge: Gallery → Contact -->
+      <div class="signal-bridge fade-in-section" aria-hidden="true">
+        <span class="bridge-line bridge-line-top"></span>
+        <svg class="w-full max-w-3xl h-10 px-6" viewBox="0 0 400 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="signature-divider wave-glow" d="M 0 20 L 110 20 L 118 12 L 127 30 L 136 10 L 145 27 L 152 17 L 160 22 L 200 20 L 240 20 L 249 6 L 258 34 L 267 12 L 276 28 L 283 20 L 400 20" fill="none" stroke="#E52E2E" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span class="bridge-line bridge-line-bottom"></span>
+      </div>
+
       <!-- Contact Form Section -->
-      <section id="inquiry" class="px-6 md:px-12 lg:px-24 py-24 fade-in-section">
-        <div class="max-w-3xl mx-auto">
+      <section id="inquiry" class="px-6 md:px-12 lg:px-24 py-16 md:py-24 fade-in-section relative z-10">
+        <div class="max-w-3xl mx-auto glass-panel rounded-xl p-6 md:p-12">
           <div class="text-center mb-12">
-             <p class="text-warm-muted text-sm tracking-[0.3em] uppercase mb-6">Let’s make some music.</p>
-             <h2 class="font-display text-4xl md:text-4xl font-light">Every project starts with a conversation. Let's see if we are a good fit for each other.</h2>
+             <p class="signal-label mb-6">
+               <span class="signal-dot"></span> Let’s make some music <span class="signal-dot"></span>
+             </p>
+             <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight leading-snug">Every project starts with a conversation. Let's see if we are a good fit for each other.</h2>
           </div>
 
           <form class="space-y-8" id="contact-form" novalidate>
             <div class="grid md:grid-cols-2 gap-8">
               <div class="space-y-2">
-                <label for="name" class="text-sm text-warm tracking-wide uppercase">Name</label>
-                <input type="text" id="name" name="name" required class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors placeholder-warm-muted" placeholder="Your Name">
+                <label for="name" class="text-[0.65rem] font-bold text-ink tracking-widest uppercase">Name</label>
+                <input type="text" id="name" name="name" required class="input-minimal w-full p-4 text-sm font-medium placeholder:text-ink-mute" placeholder="Your Name">
               </div>
               <div class="space-y-2">
-                <label for="email" class="text-sm text-warm tracking-wide uppercase">Email</label>
-                <input type="email" id="email" name="email" required class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors placeholder-warm-muted" placeholder="your@email.com">
+                <label for="email" class="text-[0.65rem] font-bold text-ink tracking-widest uppercase">Email</label>
+                <input type="email" id="email" name="email" required class="input-minimal w-full p-4 text-sm font-medium placeholder:text-ink-mute" placeholder="your@email.com">
               </div>
             </div>
             <div class="space-y-2">
-              <label for="message" class="text-sm text-warm tracking-wide uppercase">Message</label>
-              <textarea id="message" name="message" required rows="4" class="w-full bg-transparent border-b border-warm py-2 text-warm focus:outline-none focus:border-warm-accent transition-colors resize-none placeholder-warm-muted" placeholder="Tell me about your project..."></textarea>
+              <label for="message" class="text-[0.65rem] font-bold text-ink tracking-widest uppercase">Message</label>
+              <textarea id="message" name="message" required rows="4" class="input-minimal w-full p-4 text-sm font-medium resize-none placeholder:text-ink-mute" placeholder="Tell me about your project..."></textarea>
             </div>
-            <div class="text-center pt-8">
-              <button type="submit" class="inline-flex items-center gap-3 text-warm hover:text-white transition-colors duration-300 group">
-                <span class="text-lg tracking-wide uppercase">Send Message</span>
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+            <div class="text-center pt-4">
+              <button type="submit" class="btn-primary w-full md:w-auto inline-flex justify-center items-center gap-3 px-10 py-4 text-[0.7rem] font-bold tracking-widest uppercase rounded-sm group">
+                <span>Send Message</span>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform">
+                  <path d="M2 8h12M9 3l5 5-5 5" />
                 </svg>
+                <span class="btn-loader loader-wave hidden ml-1">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </span>
               </button>
             </div>
           </form>
+          <!-- Error Message -->
+          <div id="form-error" class="mt-6 hidden p-4 bg-red-50 text-signal text-xs text-center border border-red-100 rounded-sm">
+            Something went wrong while sending your message. Please try again.
+          </div>
           <script>
             document.addEventListener('DOMContentLoaded', () => {
               const form = document.getElementById('contact-form');
               const inputs = form.querySelectorAll('input, textarea');
+              const formError = document.getElementById('form-error');
 
               // Function to validate a single field
               const validateField = (field) => {
                 if (!field.value.trim()) {
-                  field.classList.add('border-red-500');
-                  field.classList.remove('border-warm');
+                  field.classList.add('input-error');
                   return false;
                 } else {
-                  field.classList.remove('border-red-500');
-                  field.classList.add('border-warm');
+                  field.classList.remove('input-error');
                   return true;
                 }
               };
@@ -515,19 +559,15 @@
               // Add input listeners to remove error state on typing
               inputs.forEach(input => {
                 input.addEventListener('input', () => {
-                  if (input.classList.contains('border-red-500')) {
+                  if (input.classList.contains('input-error')) {
                      validateField(input);
                   }
                 });
-                
-                // Keep distinct focus style logic separate if needed, 
-                // but usually the CSS :focus will handle the active state.
-                // We just ensure the error border overrides the default layout border if invalid.
               });
 
               form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
+
                 let isValid = true;
                 inputs.forEach(input => {
                   if (!validateField(input)) {
@@ -536,23 +576,26 @@
                 });
 
                 if (!isValid) {
-                  // Optional: shake effect or scrolling to error could go here
-                  return; 
+                  return;
                 }
 
                 // Proceed with submission
                 const button = this.querySelector('button');
-                const originalContent = button.innerHTML;
-                
-                button.innerHTML = '<span class="text-lg tracking-wide uppercase">Sending...</span>';
+                const label = button.querySelector('span');
+                const loader = button.querySelector('.btn-loader');
+                const originalContent = label.textContent;
+
+                label.textContent = 'Sending';
+                loader.classList.remove('hidden');
                 button.disabled = true;
-                
+                formError.classList.add('hidden');
+
                 const formData = {
                   name: document.getElementById('name').value,
                   email: document.getElementById('email').value,
                   message: document.getElementById('message').value
                 };
-                
+
                 try {
                   const response = await fetch('/api/contact', {
                     method: 'POST',
@@ -561,14 +604,15 @@
                     },
                     body: JSON.stringify(formData)
                   });
-                  
+
                   const result = await response.json();
-                  
+
                   if (response.ok) {
-                    button.innerHTML = '<span class="text-lg tracking-wide uppercase">Message Sent</span>';
+                    label.textContent = 'Message Sent';
+                    loader.classList.add('hidden');
                     form.reset();
                     setTimeout(() => {
-                      button.innerHTML = originalContent;
+                      label.textContent = originalContent;
                       button.disabled = false;
                     }, 3000);
                   } else {
@@ -576,11 +620,10 @@
                   }
                 } catch (error) {
                   console.error('Error:', error);
-                  button.innerHTML = '<span class="text-lg tracking-wide uppercase text-red-500">Error Sending</span>';
-                  setTimeout(() => {
-                    button.innerHTML = originalContent;
-                    button.disabled = false;
-                  }, 3000);
+                  label.textContent = originalContent;
+                  loader.classList.add('hidden');
+                  formError.classList.remove('hidden');
+                  button.disabled = false;
                 }
               });
             });
@@ -589,27 +632,27 @@
       </section>
 
        <!-- Contact Footer -->
-       <footer class="footer bg-transparent flex flex-col items-center gap-4 p-6">
+       <footer class="footer bg-transparent flex flex-col items-center gap-4 p-8 relative z-10 border-t border-line">
          <div class="flex items-center gap-2">
-           <img src="images/logo.svg" alt="Alba Music Lab" class="h-16 w-auto opacity-80">
+           <img src="images/logo.svg" alt="Alba Music Lab" class="h-14 w-auto">
          </div>
          <aside>
-           <p class="text-warm-muted text-sm">©2026 <span class="font-medium text-warm">Alba Music Lab</span></p>
+           <p class="text-ink-mute text-[0.65rem] uppercase tracking-widest">©2026 <span class="font-bold text-ink">Alba Music Lab</span></p>
          </aside>
-         <nav class="flex gap-6 text-warm-muted text-sm">
-           <a class="hover:text-warm transition-colors" href="#bio">About</a>
-           <a class="hover:text-warm transition-colors" href="#services">Services</a>
-           <a class="hover:text-warm transition-colors" href="#gallery">Portfolio</a>
-           <a class="hover:text-warm transition-colors" href="#inquiry">Contact</a>
+         <nav class="flex gap-6 text-ink-mute text-[0.7rem] font-medium uppercase tracking-widest">
+           <a class="hover-ink transition-colors" href="#bio">About</a>
+           <a class="hover-ink transition-colors" href="#services">Services</a>
+           <a class="hover-ink transition-colors" href="#gallery">Portfolio</a>
+           <a class="hover-ink transition-colors" href="#inquiry">Contact</a>
          </nav>
          <div class="flex h-5 gap-4 items-center mt-2">
-           <a href="https://instagram.com/luisteixeira8" target="_blank" rel="noopener noreferrer" class="text-warm-muted hover:text-warm transition-colors" aria-label="Instagram">
+           <a href="https://instagram.com/luisteixeira8" target="_blank" rel="noopener noreferrer" class="text-ink-mute hover-ink transition-colors" aria-label="Instagram">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
            </a>
-           <a href="https://linkedin.com/in/luis-teixeira8" target="_blank" rel="noopener noreferrer" class="text-warm-muted hover:text-warm transition-colors" aria-label="LinkedIn">
+           <a href="https://linkedin.com/in/luis-teixeira8" target="_blank" rel="noopener noreferrer" class="text-ink-mute hover-ink transition-colors" aria-label="LinkedIn">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
            </a>
-           <a href="https://facebook.com/luisteixeira8" target="_blank" rel="noopener noreferrer" class="text-warm-muted hover:text-warm transition-colors" aria-label="Facebook">
+           <a href="https://facebook.com/luisteixeira8" target="_blank" rel="noopener noreferrer" class="text-ink-mute hover-ink transition-colors" aria-label="Facebook">
              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
            </a>
          </div>
@@ -617,14 +660,14 @@
 
     </div>
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl transform translate-x-full transition-transform duration-500 ease-in-out flex items-center justify-center md:hidden">
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transform translate-x-full transition-transform duration-500 ease-in-out flex items-center justify-center md:hidden">
       <div class="flex flex-col gap-8 text-center">
-        <a href="#bio" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">About</a>
-        <a href="#services" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">Services</a>
-        <a href="#gallery" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">Portfolio</a>
-        <a href="#inquiry" class="mobile-link text-2xl font-display text-warm hover:text-warm-accent transition-colors duration-300">Contact</a>
+        <a href="#bio" class="mobile-link text-2xl font-display font-black tracking-tighter text-ink hover:text-signal transition-colors duration-300">About</a>
+        <a href="#services" class="mobile-link text-2xl font-display font-black tracking-tighter text-ink hover:text-signal transition-colors duration-300">Services</a>
+        <a href="#gallery" class="mobile-link text-2xl font-display font-black tracking-tighter text-ink hover:text-signal transition-colors duration-300">Portfolio</a>
+        <a href="#inquiry" class="mobile-link text-2xl font-display font-black tracking-tighter text-ink hover:text-signal transition-colors duration-300">Contact</a>
       </div>
-      <button id="close-menu" class="absolute top-6 right-6 text-warm-muted hover:text-warm">
+      <button id="close-menu" class="absolute top-6 right-6 text-ink-mute hover-ink" aria-label="Close menu">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M18 6L6 18M6 6l12 12" />
         </svg>
@@ -632,189 +675,6 @@
     </div>
 
     <script>
-      const defaultConfig = {
-        hero_title: "Let's craft your music",
-        hero_subtitle: "Composer • Producer • Educator",
-        bio_title: "The Person Behind the Music",
-        bio_text:
-          "With over a decade of experience crafting soundscapes for film, television, and live performances, Alba Music Lab represents the culmination of artistic vision and technical excellence.\n\nFrom intimate studio sessions to grand orchestral arrangements, every project is approached with the same dedication to emotional authenticity and sonic precision.",
-        gallery_title: "Visual Journey",
-        service_1_title: "Scoring",
-        service_2_title: "Studio Production",
-        service_3_title: "Live Direction",
-        service_4_title: "The Learn",
-        footer_email: "hello@albamusiclab.com",
-        background_color: "#000000",
-        text_color: "#E8DCC4",
-        accent_color: "#C4A574",
-        muted_color: "#A69B8A",
-        border_color: "#3D3A35",
-      };
-
-      let config = { ...defaultConfig };
-
-      async function onConfigChange(cfg) {
-        config = { ...defaultConfig, ...cfg };
-
-        // Hero section
-        const heroTitle = document.getElementById("hero-title");
-        const titleParts = (
-          config.hero_title || defaultConfig.hero_title
-        ).split(" ");
-        if (titleParts.length > 2) {
-          heroTitle.innerHTML = `${titleParts.slice(0, 2).join(" ")}<br><em class="font-light">${titleParts.slice(2).join(" ")}</em>`;
-        } else {
-          heroTitle.innerHTML = config.hero_title || defaultConfig.hero_title;
-        }
-
-        document.getElementById("hero-subtitle").textContent =
-          config.hero_subtitle || defaultConfig.hero_subtitle;
-
-        // Bio section
-        const bioTitle = config.bio_title || defaultConfig.bio_title;
-        const bioTitleParts = bioTitle.split(" ");
-        const midPoint = Math.ceil(bioTitleParts.length / 2);
-        document.getElementById("bio-title").innerHTML =
-          `${bioTitleParts.slice(0, midPoint).join(" ")}<br>${bioTitleParts.slice(midPoint).join(" ")}`;
-
-        const bioText = config.bio_text || defaultConfig.bio_text;
-        const bioParagraphs = bioText.split("\n\n");
-        document.getElementById("bio-text").innerHTML = bioParagraphs
-          .map((p) => `<p>${p}</p>`)
-          .join("");
-
-        // Gallery section
-        document.getElementById("gallery-title").textContent =
-          config.gallery_title || defaultConfig.gallery_title;
-
-        // Services
-        document.getElementById("service-1-title").textContent =
-          config.service_1_title || defaultConfig.service_1_title;
-        document.getElementById("service-2-title").textContent =
-          config.service_2_title || defaultConfig.service_2_title;
-        document.getElementById("service-3-title").textContent =
-          config.service_3_title || defaultConfig.service_3_title;
-        document.getElementById("service-4-title").textContent =
-          config.service_4_title || defaultConfig.service_4_title;
-
-        // Footer
-        // Check if footer-email exists
-         const emailEl = document.getElementById("footer-email");
-         if (emailEl) {
-             emailEl.querySelector("span").textContent = config.footer_email || defaultConfig.footer_email;
-         }
-
-        // Colors
-        document.body.style.backgroundColor =
-          config.background_color || defaultConfig.background_color;
-        document.body.style.color =
-          config.text_color || defaultConfig.text_color;
-
-        document.documentElement.style.setProperty(
-          "--accent",
-          config.accent_color || defaultConfig.accent_color,
-        );
-        document.documentElement.style.setProperty(
-          "--muted",
-          config.muted_color || defaultConfig.muted_color,
-        );
-        document.documentElement.style.setProperty(
-          "--border",
-          config.border_color || defaultConfig.border_color,
-        );
-
-        const warmElements = document.querySelectorAll(".text-warm");
-        warmElements.forEach(
-          (el) =>
-            (el.style.color = config.text_color || defaultConfig.text_color),
-        );
-
-        const mutedElements = document.querySelectorAll(".text-warm-muted");
-        mutedElements.forEach(
-          (el) =>
-            (el.style.color = config.muted_color || defaultConfig.muted_color),
-        );
-
-        const borderElements = document.querySelectorAll(".border-warm");
-        borderElements.forEach(
-          (el) =>
-            (el.style.borderColor =
-              config.border_color || defaultConfig.border_color),
-        );
-      }
-
-      function mapToCapabilities(cfg) {
-        return {
-          recolorables: [
-            {
-              get: () => cfg.background_color || defaultConfig.background_color,
-              set: (value) => {
-                cfg.background_color = value;
-                window.elementSdk.setConfig({ background_color: value });
-              },
-            },
-            {
-              get: () => cfg.text_color || defaultConfig.text_color,
-              set: (value) => {
-                cfg.text_color = value;
-                window.elementSdk.setConfig({ text_color: value });
-              },
-            },
-            {
-              get: () => cfg.accent_color || defaultConfig.accent_color,
-              set: (value) => {
-                cfg.accent_color = value;
-                window.elementSdk.setConfig({ accent_color: value });
-              },
-            },
-            {
-              get: () => cfg.muted_color || defaultConfig.muted_color,
-              set: (value) => {
-                cfg.muted_color = value;
-                window.elementSdk.setConfig({ muted_color: value });
-              },
-            },
-            {
-              get: () => cfg.border_color || defaultConfig.border_color,
-              set: (value) => {
-                cfg.border_color = value;
-                window.elementSdk.setConfig({ border_color: value });
-              },
-            },
-          ],
-          borderables: [],
-          fontEditable: undefined,
-          fontSizeable: undefined,
-        };
-      }
-
-      function mapToEditPanelValues(cfg) {
-        return new Map([
-          ["hero_title", cfg.hero_title || defaultConfig.hero_title],
-          ["hero_subtitle", cfg.hero_subtitle || defaultConfig.hero_subtitle],
-          ["bio_title", cfg.bio_title || defaultConfig.bio_title],
-          ["bio_text", cfg.bio_text || defaultConfig.bio_text],
-          ["gallery_title", cfg.gallery_title || defaultConfig.gallery_title],
-          [
-            "service_1_title",
-            cfg.service_1_title || defaultConfig.service_1_title,
-          ],
-          [
-            "service_2_title",
-            cfg.service_2_title || defaultConfig.service_2_title,
-          ],
-          [
-            "service_3_title",
-            cfg.service_3_title || defaultConfig.service_3_title,
-          ],
-          [
-            "service_4_title",
-            cfg.service_4_title || defaultConfig.service_4_title,
-          ],
-          ["footer_email", cfg.footer_email || defaultConfig.footer_email],
-        ]);
-      }
-      
       // Implement specific enhancements logic
       document.addEventListener('DOMContentLoaded', () => {
          // Mobile Menu Logic
@@ -827,7 +687,7 @@
              openMenuBtn.addEventListener('click', () => {
                  mobileMenu.classList.remove('translate-x-full');
              });
-             
+
              closeMenuBtn.addEventListener('click', () => {
                  mobileMenu.classList.add('translate-x-full');
              });
@@ -850,7 +710,7 @@
              entries.forEach(entry => {
                  if (entry.isIntersecting) {
                      entry.target.classList.add('is-visible');
-                     observer.unobserve(entry.target); 
+                     observer.unobserve(entry.target);
                  }
              });
          }, observerOptions);
@@ -858,62 +718,27 @@
          const animatedElements = document.querySelectorAll('.fade-in-section');
          animatedElements.forEach(el => observer.observe(el));
 
-         // Background darken on scroll
-         // Background darken on scroll
-         const scrollContainer = document.querySelector('.scroll-container');
-         
-         if (scrollContainer) {
-             scrollContainer.addEventListener('scroll', () => {
-                 const scrollPosition = scrollContainer.scrollTop;
-                 const windowHeight = window.innerHeight;
-                 
-                 // Calculate brightness: starts at 0.4, goes down to 0.1 after scrolling 100vh
-                 // Formula: 0.4 - (scroll / height) * 0.4
-                 // We clamp strictly between 0.05 (very dark) and 0.4 (original)
-                 let brightness = 0.4 - (scrollPosition / windowHeight) * 0.4;
-                 brightness = Math.max(0.05, Math.min(0.4, brightness)); 
-                 
-                 document.body.style.setProperty('--bg-brightness', brightness);
+         // Animated stat counters
+         const counters = document.querySelectorAll('.stat-number');
+         const counterObserver = new IntersectionObserver((entries) => {
+             entries.forEach(entry => {
+                 if (!entry.isIntersecting) return;
+                 const el = entry.target;
+                 counterObserver.unobserve(el);
+                 const target = parseInt(el.dataset.target, 10);
+                 const suffix = el.dataset.suffix || '';
+                 const duration = 1400;
+                 const start = performance.now();
+                 const tick = (now) => {
+                     const p = Math.min((now - start) / duration, 1);
+                     const eased = 1 - Math.pow(1 - p, 3);
+                     el.textContent = Math.round(eased * target) + suffix;
+                     if (p < 1) requestAnimationFrame(tick);
+                 };
+                 requestAnimationFrame(tick);
              });
-         } else {
-             // Fallback for window scroll
-             window.addEventListener('scroll', () => {
-                  const scrollPosition = window.scrollY;
-                  const windowHeight = window.innerHeight;
-                  
-                  let brightness = 0.4 - (scrollPosition / windowHeight) * 0.4;
-                  brightness = Math.max(0.05, Math.min(0.4, brightness)); 
-                  
-                  document.body.style.setProperty('--bg-brightness', brightness);
-             });
-         }
-
-
-         // Custom Cursor
-         const cursorDot = document.querySelector('.cursor-dot');
-
-         if (window.matchMedia("(pointer: fine)").matches && cursorDot) {
-             window.addEventListener("mousemove", function (e) {
-                 const mouseX = e.clientX;
-                 const mouseY = e.clientY;
-
-                 // Dot follows immediately
-                 cursorDot.style.left = `${mouseX}px`;
-                 cursorDot.style.top = `${mouseY}px`;
-             });
-             
-             // Optional: Add hover effect to the dot itself if desired, or remove completely. 
-             // For now, removing the outline hover logic as the outline is gone.
-             const clickables = document.querySelectorAll('a, button, .cursor-pointer');
-             clickables.forEach(el => {
-                 el.addEventListener('mouseenter', () => {
-                     cursorDot.style.transform = 'translate(-50%, -50%) scale(2)';
-                 });
-                 el.addEventListener('mouseleave', () => {
-                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-                 });
-             });
-         }
+         }, { threshold: 0.6 });
+         counters.forEach(c => counterObserver.observe(c));
       });
     </script>
   </body>

@@ -1,16 +1,17 @@
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./404.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        warm: '#e8dcc4',
-        'warm-muted': '#a69b8a',
-        'warm-accent': '#c4a574',
-        'border-warm': '#3d3a35',
+        paper: '#ffffff',
+        ink: '#050505',
+        'ink-mute': '#888888',
+        signal: '#E52E2E',
+        line: '#e5e5e5',
       },
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        body: ['"Manrope"', 'system-ui', 'sans-serif'],
+        display: ['"Outfit"', 'system-ui', 'sans-serif'],
+        body: ['"Outfit"', 'system-ui', 'sans-serif'],
       },
     },
   },

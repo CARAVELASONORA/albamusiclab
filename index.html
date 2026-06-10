@@ -460,29 +460,42 @@
 
               // Scroll observer for Mobile/Desktop image reveal
               const touchDevice = window.matchMedia('(hover: none)').matches;
-              const filterObserver = new IntersectionObserver((entries) => {
+
+              // Color reveal: on touch devices EVERY photo (about, services,
+              // gallery) gains color as it scrolls into view, since there is no
+              // hover. On desktop the gallery still reveals on scroll while the
+              // about/service images keep their hover-to-reveal behavior.
+              const colorTargets = touchDevice
+                ? document.querySelectorAll('.tone-filter')
+                : document.querySelectorAll('.gallery-item .tone-filter');
+
+              const colorObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                  const img = entry.target.querySelector('.tone-filter');
-                  if (img) {
-                    if (entry.isIntersecting) {
-                      img.classList.add('is-in-view');
-                    } else {
-                      img.classList.remove('is-in-view');
-                    }
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('is-in-view');
+                  } else {
+                    entry.target.classList.remove('is-in-view');
                   }
-                  // On touch devices there is no hover: play videos while in view
-                  const video = entry.target.querySelector('video');
-                  if (video && touchDevice) {
+                });
+              }, { threshold: 0.4 }); // 40% visible to trigger
+
+              colorTargets.forEach(el => colorObserver.observe(el));
+
+              // On touch devices there is no hover: play gallery videos while in view
+              if (touchDevice) {
+                const videoObserver = new IntersectionObserver((entries) => {
+                  entries.forEach(entry => {
+                    const video = entry.target.querySelector('video');
+                    if (!video) return;
                     if (entry.isIntersecting) {
                       video.play().catch(() => {});
                     } else {
                       video.pause();
                     }
-                  }
-                });
-              }, { threshold: 0.4 }); // 40% visible to trigger
-
-              galleryItems.forEach(item => filterObserver.observe(item));
+                  });
+                }, { threshold: 0.4 });
+                galleryItems.forEach(item => videoObserver.observe(item));
+              }
             });
           </script>
 

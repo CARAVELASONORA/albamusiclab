@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --bg-pure: #E3D6BA;
+    --bg-pure: #e6e5e3;
     --ink-main: #2B241C;
     --ink-mute: #8A7A63;
     --accent-signal: #B24A2A; /* O Vermelho 'Record' / Sinal */

@@ -4,11 +4,11 @@
 
 @layer base {
   :root {
-    --bg-pure: #ffffff;
-    --ink-main: #050505;
-    --ink-mute: #888888;
-    --accent-signal: #E52E2E; /* O Vermelho 'Record' / Sinal */
-    --line: #e5e5e5;
+    --bg-pure: #F1EADC;
+    --ink-main: #2B241C;
+    --ink-mute: #8A7A63;
+    --accent-signal: #B24A2A; /* O Vermelho 'Record' / Sinal */
+    --line: #E0D3BC;
   }
 
   body {
@@ -66,7 +66,7 @@
   /* text-ink, text-signal, bg-signal, border-line, font-display, font-body, etc.
      are generated automatically from the colors/fontFamily in tailwind.config.js. */
   .hover-ink:hover {
-    color: #050505;
+    color: #2B241C;
   }
 
   /* Oscilloscope / waveform draw animation (logo + dividers) */
@@ -82,7 +82,7 @@
   }
 
   .wave-glow {
-    filter: drop-shadow(0 0 2px rgba(229, 46, 46, 0.4));
+    filter: drop-shadow(0 0 2px rgba(178, 74, 42, 0.4));
   }
 
   /* Section divider: the acoustic signature line.
@@ -195,15 +195,15 @@
 
   /* Frosted panel from the identity system */
   .glass-panel {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(241, 234, 220, 0.8);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(43, 36, 28, 0.05);
+    box-shadow: 0 10px 40px rgba(43, 36, 28, 0.03);
   }
 
   .input-minimal {
     background: transparent;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #E0D3BC;
     border-radius: 4px;
     transition: all 0.3s ease;
   }
@@ -226,7 +226,7 @@
   }
 
   .btn-primary:hover {
-    background-color: #222;
+    background-color: #3A3128;
     transform: translateY(-1px);
   }
 
@@ -269,7 +269,7 @@
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 4px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #E0D3BC;
   }
 
   .service-card::before {
@@ -278,13 +278,13 @@
     background: linear-gradient(
       180deg,
       transparent 35%,
-      rgba(5, 5, 5, 0.85) 100%
+      rgba(43, 36, 28, 0.85) 100%
     );
   }
 
   .service-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 50px rgba(5, 5, 5, 0.12);
+    box-shadow: 0 20px 50px rgba(43, 36, 28, 0.12);
   }
 
   .service-card:hover .service-number {
@@ -332,12 +332,12 @@
     cursor: pointer;
     transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
     border-radius: 4px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #E0D3BC;
   }
 
   .gallery-item:hover {
     z-index: 10;
-    box-shadow: 0 20px 50px rgba(5, 5, 5, 0.12);
+    box-shadow: 0 20px 50px rgba(43, 36, 28, 0.12);
   }
 
   /* Slow zoom into the moment on hover */
@@ -394,10 +394,10 @@
   }
 
   .studio-image {
-    background: #f5f5f5;
+    background: #EDE4D3;
     position: relative;
     border-radius: 4px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #E0D3BC;
     overflow: hidden; /* Ensure image inside respects the radius */
   }
 

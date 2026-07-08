@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --bg-pure: #D9C9A8;
+    --bg-pure: #E3D6BA;
     --ink-main: #2B241C;
     --ink-mute: #8A7A63;
     --accent-signal: #B24A2A; /* O Vermelho 'Record' / Sinal */
@@ -195,7 +195,7 @@
 
   /* Frosted panel from the identity system */
   .glass-panel {
-    background: rgba(217, 201, 168, 0.8);
+    background: rgba(227, 214, 186, 0.8);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(43, 36, 28, 0.05);
     box-shadow: 0 10px 40px rgba(43, 36, 28, 0.03);

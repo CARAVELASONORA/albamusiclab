@@ -555,7 +555,7 @@ video {
 }
 
 :root {
-  --bg-pure: #D9C9A8;
+  --bg-pure: #E3D6BA;
   --ink-main: #2B241C;
   --ink-mute: #8A7A63;
   --accent-signal: #B24A2A;
@@ -1441,7 +1441,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 .bg-paper {
   --tw-bg-opacity: 1;
-  background-color: rgb(217 201 168 / var(--tw-bg-opacity, 1));
+  background-color: rgb(227 214 186 / var(--tw-bg-opacity, 1));
 }
 
 .bg-red-50 {
@@ -1454,7 +1454,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 .bg-white\/95 {
-  background-color: rgb(217 201 168 / 0.95);
+  background-color: rgb(227 214 186 / 0.95);
 }
 
 .bg-gradient-to-b {
@@ -1462,14 +1462,14 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 .from-white {
-  --tw-gradient-from: #D9C9A8 var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(217 201 168 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-from: #E3D6BA var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(227 214 186 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
 .via-white\/70 {
-  --tw-gradient-to: rgb(217 201 168 / 0)  var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), rgb(217 201 168 / 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  --tw-gradient-to: rgb(227 214 186 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(227 214 186 / 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
 .to-transparent {

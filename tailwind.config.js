@@ -3,7 +3,7 @@ module.exports = {
     theme: {
           extend: {
                   colors: {
-                            paper: '#E3D6BA',
+                            paper: '#D9C9A8',
                             ink: '#2B241C',
                             'ink-mute': '#8A7A63',
                             signal: '#B24A2A',
